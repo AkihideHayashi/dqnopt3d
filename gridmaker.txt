@@ -1,0 +1,23 @@
+グリッドメーカーの流れ
+
+np.fromfunctionで一気に仕留める
+np.fromfunctionに入れる関数は
+f(i,j,k,l):
+座標をi,j,kから取得、
+その座標を用いて一連ガウスでその値のn or l or mの値を取得、
+もしくはl=3ならばhandとのガウスを取得。
+atomsから座標を渡すことで一連のガウス和を計算する関数
+g(r, i)を作成する必要がある。
+
+
+f(i,j,k,l):
+    if l < 3:
+        return g(c(i,j,k), l)
+    elif:
+        return h(c(i,j,k))
+
+g(r, l):
+    return reduce(lambda atom: gauss(atom.r - r, l), atoms)
+
+h(r):
+    return gauss(hand.r - r, 1)
